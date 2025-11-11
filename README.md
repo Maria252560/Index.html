@@ -48,6 +48,7 @@
             text-align: center;
             padding: 2rem 0;
             border-bottom: 1px solid rgba(47, 47, 47, 0.1);
+            position: relative;
         }
 
         .logo {
@@ -58,10 +59,28 @@
             cursor: pointer;
             transition: color 0.3s ease;
             display: inline-block;
+            position: relative;
         }
 
         .logo:hover {
             color: var(--blue);
+        }
+
+        .logo-edit-overlay {
+            position: absolute;
+            top: 5px;
+            right: -30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover .logo-edit-overlay {
+            opacity: 1;
         }
 
         nav {
@@ -92,6 +111,13 @@
             font-size: 2.2rem;
             margin-bottom: 3rem;
             position: relative;
+            cursor: pointer;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title:hover {
+            color: var(--blue);
         }
 
         .section-title:after {
@@ -101,6 +127,23 @@
             height: 2px;
             background: var(--dark-text);
             margin: 1rem auto;
+        }
+
+        .title-edit-overlay {
+            position: absolute;
+            top: -10px;
+            right: calc(50% - 100px);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-title:hover .title-edit-overlay {
+            opacity: 1;
         }
 
         #home {
@@ -176,18 +219,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .video-container:hover .play-overlay {
             opacity: 1;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            z-index: 2;
         }
 
-        .play-icon {
-            color: white;
-            font-size: 3rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        .video-playing .play-overlay {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .play-text {
@@ -200,6 +240,51 @@
             font-size: 0.9rem;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
             opacity: 0.8;
+        }
+
+        .edit-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .gallery-item:hover .edit-overlay {
+            opacity: 1;
+        }
+
+        /* Image Caption Styles */
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--beige);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            border-top: 1px solid rgba(47, 47, 47, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+
+        .image-caption:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .image-caption:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
         #about {
@@ -224,25 +309,17 @@
         .about-content p {
             margin-bottom: 1.5rem;
             transition: color 0.3s ease;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .about-content p:hover {
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         #about:hover .about-content p {
             color: var(--blue);
-        }
-
-        .click-indicator {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9rem;
-            color: var(--dark-text);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #about:hover .click-indicator {
-            opacity: 0.7;
         }
 
         .collection-grid {
@@ -260,9 +337,6 @@
             aspect-ratio: 1 / 1;
             cursor: pointer;
             background-color: rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .collection-item:hover {
@@ -281,6 +355,10 @@
             font-size: 0.9rem;
             text-align: center;
             padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         #process {
@@ -306,6 +384,17 @@
             transition: color 0.3s ease;
         }
 
+        .process-text p {
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .process-text p:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
         #process:hover .process-text {
             color: var(--blue);
         }
@@ -317,6 +406,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px var(--shadow);
             aspect-ratio: 4 / 3;
+            cursor: pointer;
+            position: relative;
         }
 
         .process-image img {
@@ -324,6 +415,26 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .photo-upload-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .process-image:hover .photo-upload-label {
+            opacity: 1;
         }
 
         #contact {
@@ -340,6 +451,14 @@
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .follow-us:hover {
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         .instagram-link {
@@ -352,10 +471,14 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
         }
 
         .instagram-link:hover {
             color: var(--blue);
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         .instagram-link i {
@@ -375,10 +498,13 @@
             cursor: pointer;
             transition: color 0.3s ease;
             display: inline-block;
+            padding: 5px;
+            border-radius: 4px;
         }
 
         .next-event-title:hover {
             color: var(--blue);
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         .event-field {
@@ -418,6 +544,200 @@
             font-size: 0.9rem;
         }
 
+        footer p {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        footer p:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--beige);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(47, 47, 47, 0.3);
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: var(--blue);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .upload-text {
+            color: var(--dark-text);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preview-item img, .preview-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-preview {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a7a8a;
+        }
+
+        .btn-secondary {
+            background-color: rgba(47, 47, 47, 0.1);
+            color: var(--dark-text);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(47, 47, 47, 0.2);
+        }
+
+        /* Text Edit Modal */
+        .text-edit-field {
+            width: 100%;
+            min-height: 60px;
+            padding: 1rem;
+            border: 1px solid rgba(47, 47, 47, 0.3);
+            border-radius: 4px;
+            background-color: white;
+            margin-top: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            resize: vertical;
+            color: var(--dark-text);
+        }
+
+        .text-edit-field:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        /* Editable text styles */
+        .editable {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .editable:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .editable:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
         @media (max-width: 768px) {
             .logo { font-size: 2rem; }
             nav a { margin: 0 1rem; font-size: 1rem; }
@@ -426,6 +746,8 @@
             .panel-side, .panel-center { max-width: 100%; width: 100%; }
             .collection-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
             .process-content { flex-direction: column; }
+            .logo-edit-overlay { right: -25px; font-size: 0.6rem; }
+            .title-edit-overlay { right: calc(50% - 80px); font-size: 0.6rem; }
         }
 
         @media (max-width: 480px) {
@@ -433,19 +755,24 @@
             nav { flex-wrap: wrap; }
             nav a { margin: 0.5rem; }
             .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .logo-edit-overlay { right: -20px; }
+            .title-edit-overlay { right: calc(50% - 60px); }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 class="logo">MYAH Atelier</h1>
+            <h1 class="logo" id="main-logo" contenteditable="true">
+                MYAH Atelier
+                <span class="logo-edit-overlay">Edit</span>
+            </h1>
             <nav>
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#collection">Collection</a>
-                <a href="#process">Process</a>
-                <a href="#contact">Contact</a>
+                <a href="#home" contenteditable="true">Home</a>
+                <a href="#about" contenteditable="true">About</a>
+                <a href="#collection" contenteditable="true">Collection</a>
+                <a href="#process" contenteditable="true">Process</a>
+                <a href="#contact" contenteditable="true">Contact</a>
             </nav>
         </div>
     </header>
@@ -454,24 +781,30 @@
         <div class="container">
             <div class="art-panel">
                 <div class="panel-side">
-                    <div class="gallery-item">
+                    <div class="gallery-item" id="home-left">
                         <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Silver ring">
+                        <div class="image-caption" contenteditable="true">Silver Ring Collection</div>
+                        <div class="edit-overlay">Edit</div>
                     </div>
                 </div>
                 <div class="panel-center">
-                    <div class="gallery-item">
+                    <div class="gallery-item" id="home-center">
                         <div class="video-container">
-                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Featured jewelry">
+                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Featured jewelry" class="video-poster">
                             <div class="play-overlay">
-                                <i class="fas fa-play-circle play-icon"></i>
+                                <!-- Play icon removed as requested -->
                             </div>
-                            <div class="play-text">play film</div>
+                            <div class="play-text" contenteditable="true">Click to play video</div>
+                            <div class="image-caption" contenteditable="true">Featured Collection</div>
+                            <div class="edit-overlay">Edit</div>
                         </div>
                     </div>
                 </div>
                 <div class="panel-side">
-                    <div class="gallery-item">
+                    <div class="gallery-item" id="home-right">
                         <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Artistic earrings">
+                        <div class="image-caption" contenteditable="true">Artistic Earrings</div>
+                        <div class="edit-overlay">Edit</div>
                     </div>
                 </div>
             </div>
@@ -480,81 +813,44 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About MYAH</h2>
+            <h2 class="section-title" id="about-title" contenteditable="true">
+                About MYAH
+                <span class="title-edit-overlay">Edit</span>
+            </h2>
             <div class="about-content">
-                <p>MYAH Atelier is the creative expression of artisan Maria Ysabel, who transforms precious materials into wearable art. Each piece is meticulously crafted with attention to detail, balance, and harmony.</p>
-                <p>Our philosophy is rooted in the belief that jewelry should be an extension of one's personality—subtle yet expressive, delicate yet enduring. We draw inspiration from organic forms, architectural lines, and the quiet beauty of nature.</p>
-                <p>Every creation at MYAH tells a story, capturing moments of inspiration and translating them into pieces that resonate with emotion and meaning.</p>
-                <div class="click-indicator">Click to learn more</div>
+                <p contenteditable="true">MYAH Atelier is the creative expression of artisan Maria Ysabel, who transforms precious materials into wearable art. Each piece is meticulously crafted with attention to detail, balance, and harmony.</p>
+                <p contenteditable="true">Our philosophy is rooted in the belief that jewelry should be an extension of one's personality—subtle yet expressive, delicate yet enduring. We draw inspiration from organic forms, architectural lines, and the quiet beauty of nature.</p>
+                <p contenteditable="true">Every creation at MYAH tells a story, capturing moments of inspiration and translating them into pieces that resonate with emotion and meaning.</p>
             </div>
         </div>
     </section>
 
     <section id="collection">
         <div class="container">
-            <h2 class="section-title">Collection</h2>
-            <div class="collection-grid">
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Geometric necklace">
-                </div>
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Pearl earrings">
-                </div>
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Stackable rings">
-                </div>
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minimalist bracelet">
-                </div>
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Statement necklace">
-                </div>
-                <div class="collection-item">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Artisan earrings">
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
-                <div class="collection-item">
-                    <div class="placeholder-text">New Collection</div>
-                </div>
+            <h2 class="section-title" contenteditable="true">Collection</h2>
+            <div class="collection-grid" id="collection-grid">
+                <!-- Collection items will be populated here -->
             </div>
         </div>
     </section>
 
     <section id="process">
         <div class="container">
-            <h2 class="section-title">Creative Process</h2>
+            <h2 class="section-title" id="process-title" contenteditable="true">
+                Creative Process
+                <span class="title-edit-overlay">Edit</span>
+            </h2>
             <div class="process-content">
                 <div class="process-text">
-                    <p>At MYAH, creation begins with inspiration drawn from the natural world—the curve of a leaf, the texture of stone, the play of light on water.</p>
-                    <p>We carefully select materials that speak to our aesthetic: recycled silver, ethically sourced gemstones, and unique elements that carry their own history.</p>
-                    <p>Each piece undergoes a meticulous process of sketching, modeling, and handcrafting, ensuring that the final creation maintains the essence of the original inspiration while becoming a wearable work of art.</p>
-                    <p>Our approach balances traditional techniques with contemporary design, resulting in jewelry that feels both timeless and modern.</p>
+                    <p contenteditable="true">At MYAH, creation begins with inspiration drawn from the natural world—the curve of a leaf, the texture of stone, the play of light on water.</p>
+                    <p contenteditable="true">We carefully select materials that speak to our aesthetic: recycled silver, ethically sourced gemstones, and unique elements that carry their own history.</p>
+                    <p contenteditable="true">Each piece undergoes a meticulous process of sketching, modeling, and handcrafting, ensuring that the final creation maintains the essence of the original inspiration while becoming a wearable work of art.</p>
+                    <p contenteditable="true">Our approach balances traditional techniques with contemporary design, resulting in jewelry that feels both timeless and modern.</p>
                 </div>
-                <div class="process-image">
+                <div class="process-image" id="process-image">
                     <img src="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Jewelry making process">
+                    <div class="image-caption" contenteditable="true">Handcrafting Process</div>
+                    <div class="photo-upload-label" contenteditable="true">Click to Add Process Photo</div>
                 </div>
             </div>
         </div>
@@ -563,14 +859,14 @@
     <section id="contact">
         <div class="container">
             <div class="contact-content">
-                <div class="follow-us">Follow Us</div>
-                <a href="https://instagram.com/atelie_myah" class="instagram-link">
+                <div class="follow-us" contenteditable="true">Follow Us</div>
+                <a href="https://instagram.com/atelie_myah" class="instagram-link" contenteditable="true">
                     <i class="fab fa-instagram"></i> @atelie_myah
                 </a>
                 
                 <div class="next-event">
-                    <div class="next-event-title">Next Event</div>
-                    <textarea class="event-field" placeholder="Click to add event details..."></textarea>
+                    <div class="next-event-title" contenteditable="true">Next Event</div>
+                    <textarea class="event-field" placeholder="Click to add event details..." contenteditable="true"></textarea>
                 </div>
             </div>
         </div>
@@ -578,44 +874,534 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 MYAH Atelier | Original Jewelry. All rights reserved.</p>
+            <p contenteditable="true">&copy; 2023 MYAH Atelier | Original Jewelry. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Photo Upload Modal -->
+    <div class="modal" id="photo-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Add Your Content</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="media-type-selector" id="media-type-selector">
+                <button class="media-type-btn active" data-type="image">Photo</button>
+                <button class="media-type-btn" data-type="video">Video</button>
+            </div>
+            
+            <div class="upload-area" id="upload-area">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p class="upload-text" id="upload-text">Click here or drag and drop to upload your photo</p>
+                <input type="file" id="file-input" class="file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="preview-container">
+                <!-- Preview items will be added here -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-upload">Cancel</button>
+                <button class="btn btn-primary" id="save-content">Save Content</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Edit Modal -->
+    <div class="modal" id="text-edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="text-modal-title">Edit Text</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <textarea class="text-edit-field" id="text-edit-field" placeholder="Enter new text..."></textarea>
+            
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-text-edit">Cancel</button>
+                <button class="btn btn-primary" id="save-text">Save Text</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Simple interactivity for the website
         document.addEventListener('DOMContentLoaded', function() {
-            // Make logo clickable
+            // Collection data - initially using placeholder images
+            let collectionItems = [
+                { type: 'image', src: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Geometric necklace', caption: 'Geometric Necklace' },
+                { type: 'image', src: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Pearl earrings', caption: 'Pearl Earrings' },
+                { type: 'image', src: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Stackable rings', caption: 'Stackable Rings' },
+                { type: 'image', src: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Minimalist bracelet', caption: 'Minimalist Bracelet' },
+                { type: 'image', src: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Statement necklace', caption: 'Statement Necklace' },
+                { type: 'image', src: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', alt: 'Artisan earrings', caption: 'Artisan Earrings' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' },
+                { type: 'placeholder', text: 'New Collection', caption: 'Coming Soon' }
+            ];
+
+            // Track which collection item is being edited
+            let currentEditingIndex = -1;
+            let currentEditingSection = '';
+            let currentMediaType = 'image';
+            let currentTextElement = null;
+
+            // Render collection items
+            function renderCollection() {
+                const collectionGrid = document.getElementById('collection-grid');
+                collectionGrid.innerHTML = '';
+                
+                collectionItems.forEach((item, index) => {
+                    const collectionItem = document.createElement('div');
+                    collectionItem.className = 'collection-item';
+                    collectionItem.dataset.index = index;
+                    
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        img.src = item.src;
+                        img.alt = item.alt;
+                        collectionItem.appendChild(img);
+                        
+                        // Add caption
+                        const caption = document.createElement('div');
+                        caption.className = 'image-caption';
+                        caption.contentEditable = true;
+                        caption.textContent = item.caption;
+                        collectionItem.appendChild(caption);
+                        
+                        // Add edit overlay for collection items
+                        const editOverlay = document.createElement('div');
+                        editOverlay.className = 'edit-overlay';
+                        editOverlay.textContent = 'Edit';
+                        collectionItem.appendChild(editOverlay);
+                    } else {
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'placeholder-text';
+                        placeholder.textContent = item.text;
+                        placeholder.contentEditable = true;
+                        collectionItem.appendChild(placeholder);
+                        
+                        // Add caption for placeholder items too
+                        const caption = document.createElement('div');
+                        caption.className = 'image-caption';
+                        caption.contentEditable = true;
+                        caption.textContent = item.caption;
+                        collectionItem.appendChild(caption);
+                        
+                        // Add edit overlay for placeholder items
+                        const editOverlay = document.createElement('div');
+                        editOverlay.className = 'edit-overlay';
+                        editOverlay.textContent = 'Edit';
+                        collectionItem.appendChild(editOverlay);
+                    }
+                    
+                    collectionGrid.appendChild(collectionItem);
+                });
+                
+                // Re-attach event listeners for collection items
+                attachCollectionEditListeners();
+            }
+
+            // Initialize collection
+            renderCollection();
+
+            // Photo upload functionality
+            const photoModal = document.getElementById('photo-modal');
+            const textEditModal = document.getElementById('text-edit-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            const cancelUploadBtn = document.getElementById('cancel-upload');
+            const cancelTextEditBtn = document.getElementById('cancel-text-edit');
+            const uploadArea = document.getElementById('upload-area');
+            const fileInput = document.getElementById('file-input');
+            const previewContainer = document.getElementById('preview-container');
+            const saveContentBtn = document.getElementById('save-content');
+            const saveTextBtn = document.getElementById('save-text');
+            const mediaTypeSelector = document.getElementById('media-type-selector');
+            const uploadText = document.getElementById('upload-text');
+            const textEditField = document.getElementById('text-edit-field');
+
+            let uploadedFile = null;
+
+            // Update media type UI
+            function updateMediaTypeUI() {
+                // Reset all buttons
+                document.querySelectorAll('.media-type-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Activate current media type
+                document.querySelector(`.media-type-btn[data-type="${currentMediaType}"]`).classList.add('active');
+                
+                // Update file input accept attribute
+                if (currentMediaType === 'image') {
+                    fileInput.accept = 'image/*';
+                    uploadText.textContent = 'Click here or drag and drop to upload your photo';
+                } else {
+                    fileInput.accept = 'video/*';
+                    uploadText.textContent = 'Click here or drag and drop to upload your video';
+                }
+            }
+
+            // Media type selection
+            mediaTypeSelector.addEventListener('click', function(e) {
+                if (e.target.classList.contains('media-type-btn')) {
+                    currentMediaType = e.target.dataset.type;
+                    updateMediaTypeUI();
+                    // Clear any existing preview
+                    previewContainer.innerHTML = '';
+                    uploadedFile = null;
+                    fileInput.value = '';
+                }
+            });
+
+            // Close modals
+            function closeModals() {
+                photoModal.style.display = 'none';
+                textEditModal.style.display = 'none';
+                // Reset file input and preview
+                fileInput.value = '';
+                previewContainer.innerHTML = '';
+                uploadedFile = null;
+                currentMediaType = 'image';
+                updateMediaTypeUI();
+            }
+
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', closeModals);
+            });
+
+            cancelUploadBtn.addEventListener('click', closeModals);
+            cancelTextEditBtn.addEventListener('click', closeModals);
+
+            // Click outside modal to close
+            window.addEventListener('click', function(e) {
+                if (e.target === photoModal || e.target === textEditModal) {
+                    closeModals();
+                }
+            });
+
+            // Upload area click
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--blue)';
+                uploadArea.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+            });
+
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.style.borderColor = 'rgba(47, 47, 47, 0.3)';
+                uploadArea.style.backgroundColor = 'transparent';
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'rgba(47, 47, 47, 0.3)';
+                uploadArea.style.backgroundColor = 'transparent';
+                
+                if (e.dataTransfer.files.length) {
+                    handleFile(e.dataTransfer.files[0]);
+                }
+            });
+
+            // File input change
+            fileInput.addEventListener('change', function() {
+                if (this.files.length) {
+                    handleFile(this.files[0]);
+                }
+            });
+
+            // Handle uploaded file
+            function handleFile(file) {
+                // Check file type
+                if (currentMediaType === 'image' && !file.type.match('image.*')) {
+                    alert('Please upload only image files.');
+                    return;
+                }
+                if (currentMediaType === 'video' && !file.type.match('video.*')) {
+                    alert('Please upload only video files.');
+                    return;
+                }
+                
+                uploadedFile = file;
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewContainer.innerHTML = '';
+                    
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    if (currentMediaType === 'image') {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        previewItem.appendChild(img);
+                    } else {
+                        const video = document.createElement('video');
+                        video.src = e.target.result;
+                        video.controls = true;
+                        previewItem.appendChild(video);
+                    }
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-preview';
+                    removeBtn.innerHTML = '&times;';
+                    removeBtn.addEventListener('click', function() {
+                        previewItem.remove();
+                        uploadedFile = null;
+                        fileInput.value = '';
+                    });
+                    
+                    previewItem.appendChild(removeBtn);
+                    previewContainer.appendChild(previewItem);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+
+            // Save content
+            saveContentBtn.addEventListener('click', function() {
+                if (!uploadedFile) {
+                    alert('Please upload a file.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Update the appropriate section with the new content
+                    if (currentEditingSection === 'collection') {
+                        // Update the collection item with the new image
+                        collectionItems[currentEditingIndex] = {
+                            type: 'image',
+                            src: e.target.result,
+                            alt: 'Your jewelry',
+                            caption: 'Your Jewelry Piece'
+                        };
+                        
+                        // Re-render the collection
+                        renderCollection();
+                    } else if (currentEditingSection === 'home-left') {
+                        // Update home left image
+                        const img = document.querySelector('#home-left img');
+                        img.src = e.target.result;
+                    } else if (currentEditingSection === 'home-center') {
+                        // Update home center content
+                        const videoContainer = document.querySelector('#home-center .video-container');
+                        if (currentMediaType === 'image') {
+                            // Replace with image
+                            videoContainer.innerHTML = `
+                                <img src="${e.target.result}" alt="Featured jewelry" class="video-poster">
+                                <div class="play-overlay">
+                                    <!-- Play icon removed as requested -->
+                                </div>
+                                <div class="play-text" contenteditable="true">Click to play video</div>
+                                <div class="image-caption" contenteditable="true">Featured Collection</div>
+                                <div class="edit-overlay">Edit</div>
+                            `;
+                            // Re-attach event listeners
+                            attachVideoPlayListener();
+                            attachEditOverlayListeners();
+                        } else {
+                            // Replace with video
+                            videoContainer.innerHTML = `
+                                <video class="video-poster">
+                                    <source src="${e.target.result}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="play-overlay">
+                                    <!-- Play icon removed as requested -->
+                                </div>
+                                <div class="play-text" contenteditable="true">Click to play video</div>
+                                <div class="image-caption" contenteditable="true">Featured Collection</div>
+                                <div class="edit-overlay">Edit</div>
+                            `;
+                            // Re-attach event listeners
+                            attachVideoPlayListener();
+                            attachEditOverlayListeners();
+                        }
+                    } else if (currentEditingSection === 'home-right') {
+                        // Update home right image
+                        const img = document.querySelector('#home-right img');
+                        img.src = e.target.result;
+                    } else if (currentEditingSection === 'process-image') {
+                        // Update process image
+                        const img = document.querySelector('#process-image img');
+                        img.src = e.target.result;
+                    }
+                    
+                    closeModals();
+                };
+                
+                reader.readAsDataURL(uploadedFile);
+            });
+
+            // Save text
+            saveTextBtn.addEventListener('click', function() {
+                if (currentTextElement && textEditField.value.trim() !== '') {
+                    // Remove the edit overlay span and update text
+                    const editOverlay = currentTextElement.querySelector('.logo-edit-overlay, .title-edit-overlay');
+                    const newText = textEditField.value;
+                    
+                    if (editOverlay) {
+                        currentTextElement.innerHTML = newText + editOverlay.outerHTML;
+                    } else {
+                        currentTextElement.textContent = newText;
+                    }
+                    
+                    closeModals();
+                }
+            });
+
+            // Text editing functionality
+            document.getElementById('main-logo').addEventListener('click', function(e) {
+                if (e.target.classList.contains('logo-edit-overlay')) {
+                    e.stopPropagation();
+                    currentTextElement = this;
+                    textEditField.value = this.childNodes[0].textContent.trim();
+                    document.getElementById('text-modal-title').textContent = 'Edit Logo Text';
+                    textEditModal.style.display = 'flex';
+                }
+            });
+
+            document.getElementById('about-title').addEventListener('click', function(e) {
+                if (e.target.classList.contains('title-edit-overlay')) {
+                    e.stopPropagation();
+                    currentTextElement = this;
+                    textEditField.value = this.childNodes[0].textContent.trim();
+                    document.getElementById('text-modal-title').textContent = 'Edit Section Title';
+                    textEditModal.style.display = 'flex';
+                }
+            });
+
+            document.getElementById('process-title').addEventListener('click', function(e) {
+                if (e.target.classList.contains('title-edit-overlay')) {
+                    e.stopPropagation();
+                    currentTextElement = this;
+                    textEditField.value = this.childNodes[0].textContent.trim();
+                    document.getElementById('text-modal-title').textContent = 'Edit Section Title';
+                    textEditModal.style.display = 'flex';
+                }
+            });
+
+            // Video playback functionality
+            function attachVideoPlayListener() {
+                const videoContainer = document.querySelector('#home-center .video-container');
+                const playOverlay = videoContainer.querySelector('.play-overlay');
+                const video = videoContainer.querySelector('video');
+                
+                if (playOverlay && video) {
+                    playOverlay.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        videoContainer.classList.add('video-playing');
+                        video.play();
+                        
+                        // Pause video when it ends
+                        video.addEventListener('ended', function() {
+                            videoContainer.classList.remove('video-playing');
+                        });
+                    });
+                }
+            }
+
+            // Edit overlay functionality for home section
+            function attachEditOverlayListeners() {
+                document.querySelectorAll('#home-left .edit-overlay, #home-center .edit-overlay, #home-right .edit-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const parent = this.closest('.gallery-item');
+                        
+                        if (parent.id === 'home-left') {
+                            currentEditingSection = 'home-left';
+                            currentMediaType = 'image';
+                            updateMediaTypeUI();
+                            document.getElementById('modal-title').textContent = 'Change Home Left Photo';
+                            photoModal.style.display = 'flex';
+                        } else if (parent.id === 'home-center') {
+                            currentEditingSection = 'home-center';
+                            currentMediaType = 'video';
+                            updateMediaTypeUI();
+                            document.getElementById('modal-title').textContent = 'Change Home Center Video';
+                            photoModal.style.display = 'flex';
+                        } else if (parent.id === 'home-right') {
+                            currentEditingSection = 'home-right';
+                            currentMediaType = 'image';
+                            updateMediaTypeUI();
+                            document.getElementById('modal-title').textContent = 'Change Home Right Photo';
+                            photoModal.style.display = 'flex';
+                        }
+                    });
+                });
+            }
+
+            // Edit overlay functionality for collection items
+            function attachCollectionEditListeners() {
+                document.querySelectorAll('#collection-grid .edit-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const collectionItem = this.closest('.collection-item');
+                        currentEditingIndex = parseInt(collectionItem.dataset.index);
+                        currentEditingSection = 'collection';
+                        currentMediaType = 'image';
+                        updateMediaTypeUI();
+                        document.getElementById('modal-title').textContent = 'Change Collection Photo';
+                        photoModal.style.display = 'flex';
+                    });
+                });
+            }
+
+            // Make all clickable areas functional
             document.querySelector('.logo').addEventListener('click', function() {
-                alert('MYAH Atelier - Original Jewelry');
+                // Logo click now only shows alert if not clicking edit button
+                if (!event.target.classList.contains('logo-edit-overlay')) {
+                    alert('MYAH Atelier - Original Jewelry');
+                }
             });
             
-            // Make about section clickable
             document.getElementById('about').addEventListener('click', function() {
                 alert('Learn more about our brand story and philosophy');
             });
             
-            // Make process section clickable
-            document.getElementById('process').addEventListener('click', function() {
-                alert('Discover our creative process and craftsmanship');
-            });
-            
-            // Focus event field when title is clicked
             document.querySelector('.next-event-title').addEventListener('click', function() {
                 document.querySelector('.event-field').focus();
             });
             
-            // Make collection items clickable
-            document.querySelectorAll('.collection-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    if (this.querySelector('img')) {
-                        alert('View jewelry details');
-                    } else {
-                        alert('Add new jewelry image');
-                    }
-                });
+            // Make process image clickable for editing
+            document.getElementById('process-image').addEventListener('click', function() {
+                currentEditingSection = 'process-image';
+                currentMediaType = 'image';
+                updateMediaTypeUI();
+                document.getElementById('modal-title').textContent = 'Change Process Photo';
+                photoModal.style.display = 'flex';
             });
+
+            // Initial attachment of event listeners
+            attachVideoPlayListener();
+            attachEditOverlayListeners();
+            attachCollectionEditListeners();
         });
     </script>
+
+<script>
+  // Proteção: modo edição apenas local
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "") {
+    console.log("Modo edição ativo (local)");
+  } else {
+    console.log("Modo público (edição desativada)");
+    document.querySelectorAll("[contenteditable]").forEach(el => {
+      el.removeAttribute("contenteditable");
+    });
+  }
+</script>
 </body>
 </html>
+
